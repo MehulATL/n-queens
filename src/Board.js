@@ -108,11 +108,25 @@
     // 
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex){
-      return false; // fixme
+      var matrix = this.rows();
+      // if there are two pieces on the current row return true
+      var pieceCounter = 0;
+      for (var i = 0; i < matrix.length; i++){
+        if (matrix[i][colIndex] > 0){
+          pieceCounter++
+        }
+      }
+      return (pieceCounter > 1); // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function(){
+      var matrix = this.rows();
+      for (var i = 0; i < matrix.length; i++){
+        if(this.hasColConflictAt(i)){
+          return true;
+        }
+      }
       return false; // fixme
     },
 
